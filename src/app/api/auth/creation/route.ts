@@ -31,6 +31,6 @@ export async function GET() {
   return NextResponse.redirect(
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://new-store-lmbgqt4s2-nasir-mubarak007s-projects.vercel.app"
+      : "https://new-store-six.vercel.app"
   );
 }

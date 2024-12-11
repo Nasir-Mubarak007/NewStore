@@ -272,12 +272,12 @@ export async function checkOut() {
       success_url:
         process.env.NODE_ENV === "development"
           ? "http://localhost:3000/payment/success"
-          : "https://new-store-lmbgqt4s2-nasir-mubarak007s-projects.vercel.app/payment/success",
+          : "https://new-store-six.vercel.app/payment/success",
 
       cancel_url:
         process.env.NODE_ENV === "development"
           ? "http://localhost:3000/payment/cancel"
-          : "https://new-store-lmbgqt4s2-nasir-mubarak007s-projects.vercel.app/payment.cancel",
+          : "https://new-store-six.vercel.app/payment.cancel",
       metadata: {
         userId: user.id,
       },

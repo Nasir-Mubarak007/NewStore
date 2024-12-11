@@ -2,10 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { NavbarLinks } from "./NavbarLinks";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import {
-  LoginLink,
-  RegisterLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ShoppingCartIcon } from "lucide-react";
 import { UserDropDown } from "./UserDropDown";
 import { Button } from "@/components/ui/button";
