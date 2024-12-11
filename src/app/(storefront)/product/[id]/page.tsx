@@ -28,7 +28,7 @@ async function getData(productId: string) {
 }
 
 async function ProductPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
+  const { id } = params;
   const data = await getData(id);
   const addProductToCart = addItem.bind(null, data.id);
   return (
