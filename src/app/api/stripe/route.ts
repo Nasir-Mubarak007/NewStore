@@ -1,6 +1,7 @@
 import prisma from "@/app/lib/db";
 import { redis } from "@/app/lib/redis";
 import { stripe } from "@/lib/stripe";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
 export async function POST(req: Request) {
@@ -38,9 +39,9 @@ export async function POST(req: Request) {
     default:
       {
         console.log("Unhandled event");
+        break;
       }
-
-      break;
+      revalidatePath("/cart");
   }
 
   return new Response(null, { status: 200 });
