@@ -11,7 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
-function DeleteRoute({ params }: { params: { id: string } }) {
+async function DeleteRoute(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   return (
     <div className="h-[80vh] w-full flex  items-center justify-center">
       <Card className="max-w-md">

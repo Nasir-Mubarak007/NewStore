@@ -13,7 +13,8 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { deleteBanner } from "@/app/actions";
 
-function DeleteRoute({ params }: { params: { id: string } }) {
+async function DeleteRoute({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   return (
     <div className="h-[80vh] w-full flex  items-center justify-center">
       <Card className="max-w-md">
@@ -30,7 +31,7 @@ function DeleteRoute({ params }: { params: { id: string } }) {
           </Button>
 
           <form action={deleteBanner}>
-            <Input type="hidden" name="bannerId" value={params.id} />
+            <Input type="hidden" name="bannerId" value={id} />
             <SubmitButton
               variant="destructive"
               text={"Delete Banner"}

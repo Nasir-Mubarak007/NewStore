@@ -17,7 +17,12 @@ async function getData(productId: string) {
   return data;
 }
 
-export default async function EditPage({ params }: { params: { id: string } }) {
-  const data = await getData(params.id);
+export default async function EditPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const data = await getData(id);
   return <EditForm data={data} />;
 }

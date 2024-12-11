@@ -26,7 +26,7 @@ async function getData() {
 export default function FeaturedProducts() {
   return (
     <>
-      <h2 className="text-2xl font-extrabold tracking-tight">
+      <h2 className="text-2xl font-extrabold tracking-tight mt-8">
         Featured Products
       </h2>
 

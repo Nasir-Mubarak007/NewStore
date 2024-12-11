@@ -10,7 +10,7 @@ const Home = () => {
       <CategorySelection />
 
       <Suspense fallback=<h1>Loading...</h1>>
-        <FeaturedProducts className="mt-8" />
+        <FeaturedProducts />
       </Suspense>
     </div>
   );
