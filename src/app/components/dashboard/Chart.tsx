@@ -18,7 +18,8 @@ interface chartProps {
   }[];
 }
 
-const aggregateData = (data: any) => {
+const aggregateData = (data: object[]) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const aggregated = data.reduce((acc: any, curr: any) => {
     if (acc[curr.date]) {
       acc[curr.date] += curr.revenue;
