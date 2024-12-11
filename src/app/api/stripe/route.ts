@@ -33,15 +33,15 @@ export async function POST(req: Request) {
       });
 
       await redis.del(`cart-${session.metadata?.userId}`);
+
+      revalidatePath("/cart");
       break;
     }
 
-    default:
-      {
-        console.log("Unhandled event");
-        break;
-      }
-      revalidatePath("/cart");
+    default: {
+      console.log("Unhandled event");
+      break;
+    }
   }
 
   return new Response(null, { status: 200 });

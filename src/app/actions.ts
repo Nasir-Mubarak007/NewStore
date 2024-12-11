@@ -269,8 +269,15 @@ export async function checkOut() {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
-      success_url: "http://localhost:3000/payment/success",
-      cancel_url: "http://localhost:3000/payment/cancel",
+      success_url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/payment/success"
+          : "https://new-store-lmbgqt4s2-nasir-mubarak007s-projects.vercel.app/payment/success",
+
+      cancel_url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/payment/cancel"
+          : "https://new-store-lmbgqt4s2-nasir-mubarak007s-projects.vercel.app/payment.cancel",
       metadata: {
         userId: user.id,
       },
