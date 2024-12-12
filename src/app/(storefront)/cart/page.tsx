@@ -18,6 +18,7 @@ const CartPage = async () => {
   }
 
   const cart: Cart | null = await redis.get(`cart-${user.id}`);
+  console.log("Cart Fired", user);
 
   let totalPrice = 0;
 
