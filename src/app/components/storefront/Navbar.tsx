@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { NavbarLinks } from "./NavbarLinks";
-// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-// import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ShoppingCartIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { redis } from "@/app/lib/redis";
