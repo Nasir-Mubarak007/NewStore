@@ -1,3 +1,4 @@
+import { checkUser } from "@/app/lib/checkUser";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
@@ -20,9 +21,7 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .middleware(async ({ req }) => {
-      const { getUser } = getKindeServerSession();
-
-      const user = await getUser();
+      const user = await checkUser();
 
       if (!user || user.email !== process.env.ADMIN_EMAIL)
         throw new UploadThingError("Unauthorized");
