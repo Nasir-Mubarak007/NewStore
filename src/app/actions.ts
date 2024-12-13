@@ -1,6 +1,5 @@
 "use server";
 
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod";
 import { bannerSchema, productSchema } from "./lib/zodSchemas";
@@ -10,13 +9,13 @@ import { Cart } from "./lib/interfaces";
 import { revalidatePath } from "next/cache";
 import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
-
-const { getUser } = getKindeServerSession();
-const user = await getUser();
+import { checkUser } from "./lib/checkUser";
 
 // ADMINS PRIVILEGES
 
 export async function createProduct(currentState: unknown, formData: FormData) {
+  const user = await checkUser();
+
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
     redirect("/");
   }
@@ -50,9 +49,7 @@ export async function createProduct(currentState: unknown, formData: FormData) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function editProduct(currentState: any, formData: FormData) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-
+  const user = await checkUser();
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
     return redirect("/");
   }
@@ -89,8 +86,7 @@ export async function editProduct(currentState: any, formData: FormData) {
 }
 
 export async function deleteProduct(formData: FormData) {
-  // const { getUser } = getKindeServerSession();
-  // const user = await getUser();
+  const user = await checkUser();
 
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
     return redirect("/");
@@ -105,8 +101,7 @@ export async function deleteProduct(formData: FormData) {
 }
 
 export async function createBanner(currentState: unknown, formData: FormData) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = await checkUser();
 
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
     return redirect("/");
@@ -131,8 +126,7 @@ export async function createBanner(currentState: unknown, formData: FormData) {
 }
 
 export async function deleteBanner(formData: FormData) {
-  // const { getUser } = getKindeServerSession();
-  // const user = await getUser();
+  const user = await checkUser();
 
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
     return redirect("/");
@@ -151,10 +145,11 @@ export async function deleteBanner(formData: FormData) {
 // CUSTOMERS PRIVILEGES
 
 export async function addItem(productId: string) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = await checkUser();
 
   if (!user) {
+    console.log("Unauthorized, login first");
+
     return redirect("/");
   }
 
@@ -220,10 +215,11 @@ export async function addItem(productId: string) {
 }
 
 export async function deleteItem(formData: FormData) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = await checkUser();
 
   if (!user) {
+    console.log("Unauthorized, login first");
+
     return redirect("/");
   }
 
@@ -244,10 +240,11 @@ export async function deleteItem(formData: FormData) {
 }
 
 export async function checkOut() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = await checkUser();
 
   if (!user) {
+    console.log("Unauthorized, login first");
+
     return redirect("/");
   }
 

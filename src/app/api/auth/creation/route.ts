@@ -1,10 +1,9 @@
+import { checkUser } from "@/app/lib/checkUser";
 import prisma from "@/app/lib/db";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = await checkUser();
   if (!user || user === null || !user.id) {
     throw new Error("Oops! something went wrong!");
   }
@@ -19,11 +18,11 @@ export async function GET() {
     dbUser = await prisma.user.create({
       data: {
         id: user.id,
-        firstName: user.given_name ?? "",
-        lastName: user.family_name ?? "",
+        firstName: user.firstName ?? "",
+        lastName: user.lastName ?? "",
         email: user.email ?? "",
         profileImage:
-          user.picture ?? `https://avatar.vercel.sh/${user.given_name}`,
+          user.profileImage ?? `https://avatar.vercel.sh/${user.firstName}`,
       },
     });
   }

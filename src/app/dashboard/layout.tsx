@@ -13,15 +13,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { checkUser } from "../lib/checkUser";
 
 async function DashboardLayout({ children }: { children: ReactNode }) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = await checkUser();
 
   if (!user || user.email !== process.env.ADMIN_EMAIL) {
+    console.log("Unauthorized user!");
+
     return redirect("/");
   }
 

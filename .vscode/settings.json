@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["embla", "kinde", "turbopack", "Uploadthing"]
+  "cSpell.words": ["embla", "kinde", "turbopack", "Uploadthing"],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

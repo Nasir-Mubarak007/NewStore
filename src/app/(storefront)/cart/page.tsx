@@ -1,24 +1,25 @@
 import { checkOut, deleteItem } from "@/app/actions";
 import { CheckoutBtn, DeleteItem } from "@/app/components/SubmitButtons";
+import { checkUser } from "@/app/lib/checkUser";
 import { Cart } from "@/app/lib/interfaces";
 import { redis } from "@/app/lib/redis";
 import { Button } from "@/components/ui/button";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const CartPage = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = await checkUser();
 
   if (!user) {
+    console.log("Unauthorized, login first");
+
     redirect("/");
   }
 
   const cart: Cart | null = await redis.get(`cart-${user.id}`);
-  console.log("Cart Fired", user);
+  console.log("Cart Fired", cart);
 
   let totalPrice = 0;
 
@@ -27,7 +28,7 @@ const CartPage = async () => {
   });
   return (
     <div className="max-w-2xl mx-auto mt-10 min-h-[55vh]">
-      {!cart || !cart.items ? (
+      {!cart || !cart.items || cart.items === undefined ? (
         <div className="flex min-h-[25rem] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center mt-20">
           <div className="flex size-20 items-center justify-center bg-primary/10 rounded-full">
             <ShoppingBag className="size-10 text-primary" />
