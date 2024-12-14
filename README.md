@@ -9,8 +9,8 @@ It also contains some easter eggs like banners, product catalogue and much more.
 
 The following tech stacks were employed for this store to come to life:
 
--Nextjs
--Kinde (for Auth)
--Stripe (for payment)
--redis (for cart persistence)
+-Nextjs<br/>
+-Clerk (for Auth)<br/>
+-Stripe (for payment)<br/>
+-redis (for cart persistence)<br/>
 -tailwind and shadcn (for styling)
