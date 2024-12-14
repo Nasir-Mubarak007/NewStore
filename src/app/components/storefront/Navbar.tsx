@@ -44,7 +44,7 @@ export async function Navbar() {
           <UserButton showName />
         </SignedIn>
 
-        <div className="hidden md:flex md:flex-1 md:items-center md:space-x-2 md:justify-end">
+        <div className=" flex flex-1 items-center space-x-2 justify-end">
           <SignedOut>
             <Button variant={"outline"} asChild>
               <SignInButton />

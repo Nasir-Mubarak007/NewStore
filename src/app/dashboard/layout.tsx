@@ -4,18 +4,11 @@ import { ReactNode } from "react";
 import { DashboardNavigation } from "../components/dashboard/DashboardNavigation";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { LogOut, MenuIcon, User2 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { MenuIcon } from "lucide-react";
+
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import { checkUser } from "../lib/checkUser";
+import { UserButton } from "@clerk/nextjs";
 
 async function DashboardLayout({ children }: { children: ReactNode }) {
   const user = await checkUser();
@@ -50,26 +43,7 @@ async function DashboardLayout({ children }: { children: ReactNode }) {
           </SheetContent>
         </Sheet>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button className="rounded-full" size={"icon"} variant="secondary">
-              <User2 className="size-5" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              asChild
-              className="flex flex-row gap-3 cursor-pointer"
-            >
-              <Link href={"/api/auth/logout"}>
-                <LogOut />
-                Logout
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <UserButton />
       </header>
       {children}
     </div>
