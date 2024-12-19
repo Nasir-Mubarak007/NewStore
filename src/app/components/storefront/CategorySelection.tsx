@@ -24,8 +24,8 @@ export default function CategorySelection() {
       </div>
 
       <div
-        className="grid grid-cols-1 gap-y-3 sm:grid-cols-3 sm:grid-rows-3 sm:gap-x-6
-      lg:gap-3 "
+        className="grid grid-cols-1 gap-y-3 sm:grid-cols-3 sm:grid-rows-3 grid-rows-4 sm:gap-x-6
+      lg:gap-3 p-x-3"
       >
         <div className="sm:row-span-3 group aspect-w-2 col-span-2 aspect-h-1 overflow-hidden rounded-xl">
           <Image

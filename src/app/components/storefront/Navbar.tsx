@@ -23,7 +23,7 @@ export async function Navbar() {
   return (
     <nav
       className="!w-full px-4 sm:px-6 lg:px8 py-5 flex items-center
-  justify-between"
+  justify-between "
     >
       <div className="flex items-center">
         <Link href={"/"}>

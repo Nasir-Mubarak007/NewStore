@@ -9,7 +9,6 @@ export const checkUser = async () => {
   if (!user || user === null || !user.id) {
     console.log(Error);
     return;
-    throw new Error("Oops! something went wrong!", { cause: user });
   }
 
   // Check if the user exist in our database
